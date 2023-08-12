@@ -60,7 +60,7 @@ resource "aws_instance" "demo-terraform" {
   count           = var.inst_count
   subnet_id       = aws_subnet.mysubnet.id
   key_name        = aws_key_pair.mykeypair.key_name
-  security_groups = aws_security_group.mysecurity.id
+  security_groups = [aws_security_group.mysecurity.id]
 
   root_block_device {
     volume_size = var.disk_size
