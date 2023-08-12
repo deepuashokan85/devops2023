@@ -51,7 +51,7 @@ resource "aws_security_group" "mysecurity" {
 }
 resource "aws_key_pair" "mykeypair" {
   key_name   = "mykeypair"
-  public_key = "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQCaUjKVueDuXI0aIp3p+/3CdsJVjLqHPGFU1xSNPdIMQrzTko/bDIP3Kkc84q7s+QaL6WmWMBh3RYzeiwLP5YO8vM1enp227h9D46ITjl20FnELCWDIjEkNkPO7GzNwwUoE/g7Fw9LljBcW9Mh4YmcZALbf2MsyPfx3TL28DH+7rJwT+gfigZ1tLQOIMlOLZvA7l1YC/TJZPlq2a+TYDvoO54HVjKC2lXhyPEBVwDiwozTaeR0aDFMhHC76Kg7rZeb35MaFEBYL0yK7Ut1tLjl68K+bchjR4Qpmsb8bjGzNE87CSXEF16eOusCepiqBsCyjxj1HWhrnxu5yKLZ2CcEQD/B/2bl/BWvbRKrSE/9eGN+Q9sFTFBZ2wFimHS3oIVJOSR0YnOnLYSJJN11oVpsxRSRSGN2eqatPids8BYiWavCTTM7ibvT3rySl51tBPiJIvCIoDvzepOgS0JsIbZVRshvd7cu5YYOprT9KdzzDT9ZLNtt+q6UzkCyohKyPrus= sharanya@VER-BLR-LT1970.local" # Replace this with your SSH public key
+  public_key = "" # Replace this with your SSH public key
 }
 
 resource "aws_instance" "demo-terraform" {
