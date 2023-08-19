@@ -1,17 +1,26 @@
-variable "ami_id" {
-  type    = string
-  default = "ami-0f34c5ae932e6f0e4"
+variable "subnet_group_name" {
+  type        = string
 }
 
-variable "inst_type" {
-  type    = string
-  default = "t2.micro"
+variable "subnet_ids" {
+  type        = list(string)
 }
 
-variable "inst_count" {
-  default = 1
+variable "parameter_group_name" {
+  type        = string
 }
 
-variable "disk_size" {
-  default = 8
+variable "cluster_id" {
+  type        = string
 }
+
+variable "node_type" {
+  type        = string
+  default     = "cache.t2.micro"
+}
+
+variable "num_cache_nodes" {
+  type        = number
+  default     = 1
+}
+

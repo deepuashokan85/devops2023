@@ -1,19 +1,24 @@
-resource "aws_vpc" "my_vpc" {
-  cidr_block = "10.0.0.0/16"
+resource "aws_elasticache_subnet_group" "myec" {
+  name       = var.subnet_group_name
+  subnet_ids = var.subnet_ids
 }
 
-resource "aws_subnet" "my_subnet" {
-  vpc_id     = aws_vpc.my_vpc.id
-  cidr_block = "10.0.0.0/24"
+resource "aws_elasticache_parameter_group" "myec" {
+  name   = var.parameter_group_name
+  family = "redis6.x"
 }
 
-resource "aws_instance" "my_instance" {
-  ami           = var.ami_id  # Replace with a valid AMI ID
-  instance_type = var.inst_type
-  subnet_id     = aws_subnet.my_subnet.id
+resource "aws_elasticache_cluster" "myec" {
+  cluster_id      = var.cluster_id
+  engine          = "redis"
+  engine_version  = "6.x"
+  node_type       = var.node_type
+  num_cache_nodes = var.num_cache_nodes
+  port            = 6379
 
-  tags = {
-    Name = "terraEC2Instance"
-  }
+  subnet_group_name    = aws_elasticache_subnet_group.myec.name
+  parameter_group_name = aws_elasticache_parameter_group.myec.name
 }
+
+
 
