@@ -7,6 +7,7 @@ pipeline {
         string(name: 'count', defaultValue: '', description: 'Instance Count')
         booleanParam(name: 'Destroy', defaultValue: '', description: 'Terraform Destroy')
         booleanParam(name: 'Apply', defaultValue: '', description: 'Terraform Apply')
+	password(name: 'PASSWORD', defaultValue: 'SECRET', description: 'Enter a password')
     }
 /* Pradeep DevOps*/
     stages {
