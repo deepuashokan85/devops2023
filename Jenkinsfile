@@ -15,7 +15,7 @@ pipeline {
 		sh '''
                 cd terraform
                 pwd
-                terraform init
+                /usr/local/bin/terraform init
   		'''
             }
         }
@@ -27,7 +27,7 @@ pipeline {
  		pwd
                 export TF_VAR_ami_id=$ami_id
                 export TF_VAR_count_num=$count
-                terraform plan
+                /usr/local/bin/terraform plan
 		'''
             }
         }
@@ -44,7 +44,7 @@ pipeline {
                 pwd
                 export TF_VAR_ami_id=$ami_id
                 export TF_VAR_count_num=$count
-                terraform apply --auto-approve
+                /usr/local/bin/terraform apply --auto-approve
                 '''
             }
         }
@@ -62,7 +62,7 @@ pipeline {
  		pwd
                 export TF_VAR_ami_id=$ami_id
                 export TF_VAR_count_num=$count
-                terraform destroy --auto-approve
+                /usr/local/bin/terraform destroy --auto-approve
 		'''
 		}
             }
