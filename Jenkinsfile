@@ -1,4 +1,4 @@
- pipeline {
+pipeline {
     agent any
 
     environment {
@@ -11,7 +11,7 @@
                 script {
                     def terraformDir = "${WORKSPACE}/to/devops2023/terraform/dev"
                     dir(terraformDir) {
-                       'terraform init'
+                       sh'terraform init'
                     }
                 }
             }
@@ -22,7 +22,7 @@
                 script {
                     def terraformDir = "${WORKSPACE}/to/devops2023/terraform/dev"
                     dir(terraformDir) {
-                       'terraform plan -out=tfplan'
+                       sh'terraform plan'
                     }
                 }
             }
@@ -33,7 +33,7 @@
                 script {
                     def terraformDir = "${WORKSPACE}/to/devops2023/terraform/dev"
                     dir(terraformDir) {
-                       'terraform apply tfplan'
+                       sh'terraform apply'
                     }
                 }
             }
