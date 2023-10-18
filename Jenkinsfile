@@ -6,12 +6,24 @@ pipeline {
     }
 
     stages {
+        stage('Copy Terraform Files') {
+            steps {
+                script {
+                    def terraformDir = "${WORKSPACE}/to/devops2023/terraform/dev"
+                    dir(terraformDir) {
+                        // Copy your Terraform configuration files (e.g., main.tf) to this directory
+                        sh 'cp /path/to/your/main.tf .'
+                    }
+                }
+            }
+        }
+
         stage('Terraform Init') {
             steps {
                 script {
                     def terraformDir = "${WORKSPACE}/to/devops2023/terraform/dev"
                     dir(terraformDir) {
-                       'terraform init'
+                        sh 'terraform init'
                     }
                 }
             }
@@ -22,7 +34,7 @@ pipeline {
                 script {
                     def terraformDir = "${WORKSPACE}/to/devops2023/terraform/dev"
                     dir(terraformDir) {
-                       'terraform plan'
+                        sh 'terraform plan'
                     }
                 }
             }
@@ -33,10 +45,11 @@ pipeline {
                 script {
                     def terraformDir = "${WORKSPACE}/to/devops2023/terraform/dev"
                     dir(terraformDir) {
-                       'terraform apply'
+                        sh 'terraform apply'
                     }
                 }
             }
         }
     }
 }
+
