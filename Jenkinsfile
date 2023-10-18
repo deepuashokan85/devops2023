@@ -2,17 +2,15 @@ pipeline {
     agent any
 
     environment {
-        PATH = "/usr/local/bin/terraform:$PATH" // Add the directory where Terraform is installed
+        PATH = "/usr/local/bin/terraform:$PATH"
     }
 
     stages {
-        stage('Copy Terraform Files') {
+        stage('Declarative: Checkout SCM') {
             steps {
                 script {
-                    def terraformDir = "${WORKSPACE}/to/devops2023/terraform/dev"
-                    dir(terraformDir) {
-                        // Copy your Terraform configuration files (e.g., main.tf) to this directory
-                        sh 'cp /path/to/your/main.tf .'
+                    dir("${WORKSPACE}/to/devops2023/terraform/dev") {
+                        sh 'cp terraform-config/main.tf .'
                     }
                 }
             }
