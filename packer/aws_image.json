@@ -1,7 +1,7 @@
 {
 "builders": [{
-    "ami_name": "APP AMI",
-    "ami_description": " Webapp Team AMI",
+    "ami_name": "AMI",
+    "ami_description": "Team AMI",
     "instance_type": "t2.micro",
     "region": "us-east-2",
     "type": "amazon-ebs",
@@ -20,5 +20,19 @@
       "sudo bash /tmp/script.sh"
     ]
    }
-   ]
+   ],
+
+    "post-processors": [
+    [
+      {
+        "type": "aws-parameter-store",
+        "parameters": [
+          {
+            "name": "/prod/app_ami",
+            "secure_string": true
+          }
+        ]
+      }
+    ]
+  ]
 }

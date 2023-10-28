@@ -60,7 +60,7 @@ resource "aws_subnet" "database-subnet-1" {
 
 # Creating WEB EC2 instance
 resource "aws_instance" "WEBinstance" {
-  ami                         = "ami-087c17d1fe0178315"
+  ami                         = "ami-0ecc890394f5c1234"
   instance_type               = "t2.micro"
   count                       = 2
   key_name                    = "myKey"
@@ -75,7 +75,7 @@ resource "aws_instance" "WEBinstance" {
 
 # Creating APP EC2 instance
 resource "aws_instance" "APPinstance" {
-  ami                         = "ami-087c17d1fe0178315"
+  ami                         = "ami-0ecc890394f5c1234"
   instance_type               = "t2.micro"
   count                       = 2
   key_name                    = "myKey"
