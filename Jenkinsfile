@@ -20,6 +20,7 @@ pipeline {
                 script {
                     dir("${WORKSPACE}/to/devops2023/terraform/dev") {
                         sh 'cp terraform-config/main.tf .'
+                        sh 'echo ${access_key}'
                     }
                 }
             }
