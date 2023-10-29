@@ -4,7 +4,7 @@ pipeline {
     parameters {
         choice(name: 'CHOICE', choices: ['dev', 'stage', 'prod'], description: 'Pick environment')
         string(name: 'access_key', defaultValue: '', description: 'Access Key')
-        string(name: 'secret_key', defaultValue: '', description: 'Secret Key')
+        password(name: 'secret_key', defaultValue: '', description: 'Secret Key')
         string(name: 'count', defaultValue: '', description: 'Instance Count')
         booleanParam(name: 'Destroy', defaultValue: '', description: 'Terraform Destroy')
         booleanParam(name: 'Apply', defaultValue: '', description: 'Terraform Apply')
@@ -20,7 +20,7 @@ pipeline {
                 script {
                     dir("${WORKSPACE}/to/devops2023/terraform/dev") {
                         /* sh 'cp terraform-config/main.tf .' */
-                        sh 'echo ${access_key}'
+                        sh 'echo ${secret_key}'
                     }
                 }
             }
