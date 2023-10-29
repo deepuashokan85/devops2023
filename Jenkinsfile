@@ -1,6 +1,15 @@
 pipeline {
     agent any
 
+    parameters {
+        choice(name: 'CHOICE', choices: ['dev', 'stage', 'prod'], description: 'Pick environment')
+        string(name: 'access_key', defaultValue: '', description: 'Access Key')
+        password(name: 'secret_key', defaultValue: '', description: 'Secret Key')
+        string(name: 'count', defaultValue: '', description: 'Instance Count')
+        booleanParam(name: 'Destroy', defaultValue: '', description: 'Terraform Destroy')
+        booleanParam(name: 'Apply', defaultValue: '', description: 'Terraform Apply')
+    }
+
     environment {
         PATH = "/usr/local/bin/terraform:$PATH"
     }
@@ -10,7 +19,8 @@ pipeline {
             steps {
                 script {
                     dir("${WORKSPACE}/to/devops2023/terraform/dev") {
-                        sh 'cp terraform-config/main.tf .'
+                        /* sh 'cp terraform-config/main.tf .' */
+                        sh 'echo ${secret_key}'
                     }
                 }
             }
@@ -21,29 +31,29 @@ pipeline {
                 script {
                     def terraformDir = "${WORKSPACE}/to/devops2023/terraform/dev"
                     dir(terraformDir) {
-                        sh 'terraform init'
+                        /*sh 'terraform init' */
                     }
                 }
             }
         }
 
-        stage('Terraform Plan') {
+        stage('Terraform Plan B') {
             steps {
                 script {
                     def terraformDir = "${WORKSPACE}/to/devops2023/terraform/dev"
                     dir(terraformDir) {
-                        sh 'terraform plan'
+                       /* sh 'terraform plan' */
                     }
                 }
             }
         }
 
-        stage('Terraform Apply') {
+        stage('Terraform Apply A') {
             steps {
                 script {
                     def terraformDir = "${WORKSPACE}/to/devops2023/terraform/dev"
                     dir(terraformDir) {
-                        sh 'terraform apply'
+                       /* sh 'terraform apply' */
                     }
                 }
             }
