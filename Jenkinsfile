@@ -38,7 +38,7 @@ pipeline {
             }
         }
 
-        stage('Terraform Apply') {
+        stage('Terraform Apply A') {
             steps {
                 script {
                     def terraformDir = "${WORKSPACE}/to/devops2023/terraform/dev"
