@@ -19,7 +19,7 @@ pipeline {
             steps {
                 script {
                     dir("${WORKSPACE}/to/devops2023/terraform/dev") {
-                        sh 'cp terraform-config/main.tf .'
+                        /* sh 'cp terraform-config/main.tf .' */
                         sh 'echo ${access_key}'
                     }
                 }
@@ -31,7 +31,7 @@ pipeline {
                 script {
                     def terraformDir = "${WORKSPACE}/to/devops2023/terraform/dev"
                     dir(terraformDir) {
-                        sh 'terraform init'
+                        /*sh 'terraform init' */
                     }
                 }
             }
@@ -42,7 +42,7 @@ pipeline {
                 script {
                     def terraformDir = "${WORKSPACE}/to/devops2023/terraform/dev"
                     dir(terraformDir) {
-                        sh 'terraform plan'
+                       /* sh 'terraform plan' */
                     }
                 }
             }
@@ -53,7 +53,7 @@ pipeline {
                 script {
                     def terraformDir = "${WORKSPACE}/to/devops2023/terraform/dev"
                     dir(terraformDir) {
-                        sh 'terraform apply'
+                       /* sh 'terraform apply' */
                     }
                 }
             }
