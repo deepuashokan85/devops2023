@@ -19,6 +19,7 @@ pipeline {
         stage('Terraform Init') {
             steps {
                 script {
+                    echo '************ Leooooooooooo!!!! ***************'
                     def terraformDir = "${WORKSPACE}/to/devops2023/terraform/dev"
                     dir(terraformDir) {
                         sh 'terraform init'
