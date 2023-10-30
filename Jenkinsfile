@@ -1,18 +1,29 @@
 pipeline {
     agent any
 
+    environment {
+        PATH = "/usr/local/bin/terraform:$PATH" // Add the directory where Terraform is installed
+    }
+
     stages {
-        
-           stage('Terraform Init') {
+        stage('Terraform Init') {
             steps {
-                    sh 'cd /devops2023/terraform/dev/to/var/lib/jenkins/workspace/terraformdemo && terraform init'
+                script {
+                    def terraformDir = "${WORKSPACE}/to/root/devops2023/terraform/dev"
+                    dir(terraformDir) {
+                       sh'terraform init'
+                    }
+                }
             }
         }
 
         stage('Terraform Plan') {
             steps {
                 script {
-                    sh 'cd /devops2023/terraform/dev/to/var/lib/jenkins/workspace/terraformdemo && terraform plan'
+                    def terraformDir = "${WORKSPACE}/to/root/devops2023/terraform/dev"
+                    dir(terraformDir) {
+                       sh'terraform plan'
+                    }
                 }
             }
         }
@@ -20,10 +31,12 @@ pipeline {
         stage('Terraform Apply') {
             steps {
                 script {
-                    sh 'cd /devops2023/terraform/dev/to/var/lib/jenkins/workspace/terraformdemo && terraform apply -auto-approve'
+                    def terraformDir = "${WORKSPACE}/to/root/devops2023/terraform/dev"
+                    dir(terraformDir) {
+                       sh'terraform apply'
+                    }
                 }
             }
         }
-    }
-}
+
 
