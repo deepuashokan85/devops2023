@@ -5,14 +5,14 @@ pipeline {
         
            stage('Terraform Init') {
             steps {
-                    sh 'cd /var/lib/jenkins/workspace/terraformdemo && terraform init'
+                    sh 'cd /var/lib/jenkins/workspace/terraformdemo/to/devops2023/terraform/dev && terraform init'
             }
         }
 
         stage('Terraform Plan') {
             steps {
                 script {
-                    sh 'cd /var/lib/jenkins/workspace/terraformdemo && terraform plan'
+                    sh 'cd /var/lib/jenkins/workspace/terraformdemo/to/devops2023/terraform/dev && terraform plan'
                 }
             }
         }
@@ -20,7 +20,7 @@ pipeline {
         stage('Terraform Apply') {
             steps {
                 script {
-                    sh 'cd /var/lib/jenkins/workspace/terraformdemo && terraform apply -auto-approve'
+                    sh 'cd /var/lib/jenkins/workspace/terraformdemo/to/devops2023/terraform/dev && terraform apply -auto-approve'
                 }
             }
         }
