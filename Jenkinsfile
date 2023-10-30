@@ -11,7 +11,10 @@ pipeline {
                 script {
                     def terraformDir = "${WORKSPACE}/to/root/devops2023/terraform/dev"
                     dir(terraformDir) {
-                       sh'terraform init'
+                       sh '''
+                       #!/bin/bash
+                       terraform init
+                       '''
                     }
                 }
             }
@@ -22,7 +25,10 @@ pipeline {
                 script {
                     def terraformDir = "${WORKSPACE}/to/root/devops2023/terraform/dev"
                     dir(terraformDir) {
-                       sh'terraform plan'
+                       sh '''
+                       #!/bin/bash
+                       terraform plan
+                       '''
                     }
                 }
             }
@@ -33,10 +39,14 @@ pipeline {
                 script {
                     def terraformDir = "${WORKSPACE}/to/root/devops2023/terraform/dev"
                     dir(terraformDir) {
-                       sh'terraform apply'
+                       sh '''
+                       #!/bin/bash
+                       terraform apply
+                       '''
                     }
                 }
             }
         }
-     }
+    }
+}
 
