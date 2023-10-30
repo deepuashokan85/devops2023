@@ -12,6 +12,7 @@ pipeline {
                     def terraformDir = "${WORKSPACE}/to/root/devops2023/terraform/dev"
                     dir(terraformDir) {
                        sh '''
+                       sh 'ls -la ${WORKSPACE}'
                        #!/bin/bash
                        terraform init
                        '''
@@ -26,6 +27,7 @@ pipeline {
                     def terraformDir = "${WORKSPACE}/to/root/devops2023/terraform/dev"
                     dir(terraformDir) {
                        sh '''
+                       sh 'ls -la ${WORKSPACE}'
                        #!/bin/bash
                        terraform plan
                        '''
@@ -40,6 +42,7 @@ pipeline {
                     def terraformDir = "${WORKSPACE}/to/root/devops2023/terraform/dev"
                     dir(terraformDir) {
                        sh '''
+                       sh 'ls -la ${WORKSPACE}'
                        #!/bin/bash
                        terraform apply
                        '''
