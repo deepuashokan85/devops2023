@@ -11,11 +11,8 @@ pipeline {
                 script {
                     def terraformDir = "${WORKSPACE}/to/root/devops2023/terraform/dev"
                     dir(terraformDir) {
-                       sh '''
-                       sh 'ls -la ${WORKSPACE}'
-                       #!/bin/bash
-                       terraform init
-                       '''
+                        sh 'ls -la ${WORKSPACE}' // This line lists files in the workspace (optional for debugging)
+                        sh 'terraform init' // Run Terraform init
                     }
                 }
             }
@@ -26,11 +23,8 @@ pipeline {
                 script {
                     def terraformDir = "${WORKSPACE}/to/root/devops2023/terraform/dev"
                     dir(terraformDir) {
-                       sh '''
-                       sh 'ls -la ${WORKSPACE}'
-                       #!/bin/bash
-                       terraform plan
-                       '''
+                        sh 'ls -la ${WORKSPACE}' // This line lists files in the workspace (optional for debugging)
+                        sh 'terraform plan' // Run Terraform plan
                     }
                 }
             }
@@ -41,11 +35,8 @@ pipeline {
                 script {
                     def terraformDir = "${WORKSPACE}/to/root/devops2023/terraform/dev"
                     dir(terraformDir) {
-                       sh '''
-                       sh 'ls -la ${WORKSPACE}'
-                       #!/bin/bash
-                       terraform apply
-                       '''
+                        sh 'ls -la ${WORKSPACE}' // This line lists files in the workspace (optional for debugging)
+                        sh 'terraform apply' // Run Terraform apply
                     }
                 }
             }
