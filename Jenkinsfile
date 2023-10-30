@@ -1,50 +1,26 @@
 pipeline {
     agent any
 
-    environment {
-        PATH = "/usr/local/bin/terraform:$PATH"
-    }
-
     stages {
-        stage('Declarative: Checkout SCM') {
+        
+           stage('Terraform Init') {
+            steps {
+                    sh 'cd /var/lib/jenkins/workspace/terraformdemo && terraform init'
+            }
+        }
+
+        stage('Terraform Plan') {
             steps {
                 script {
-                    dir("${WORKSPACE}/to/devops2023/terraform/dev") {
-                        sh 'cp terraform-config/main.tf .'
-                    }
+                    sh 'cd /var/lib/jenkins/workspace/terraformdemo && terraform plan'
                 }
             }
         }
 
-        stage('Terraform Init') {
+        stage('Terraform Apply') {
             steps {
                 script {
-                    def terraformDir = "${WORKSPACE}/to/devops2023/terraform/dev"
-                    dir(terraformDir) {
-                        sh 'terraform init'
-                    }
-                }
-            }
-        }
-
-        stage('Terraform Plan B') {
-            steps {
-                script {
-                    def terraformDir = "${WORKSPACE}/to/devops2023/terraform/dev"
-                    dir(terraformDir) {
-                        sh 'terraform plan'
-                    }
-                }
-            }
-        }
-
-        stage('Terraform Apply A') {
-            steps {
-                script {
-                    def terraformDir = "${WORKSPACE}/to/devops2023/terraform/dev"
-                    dir(terraformDir) {
-                        sh 'terraform apply'
-                    }
+                    sh 'cd /var/lib/jenkins/workspace/terraformdemo && terraform apply -auto-approve'
                 }
             }
         }
