@@ -1,38 +1,21 @@
 {
-"builders": [{
-    "ami_name": "AMI",
-    "ami_description": "Team AMI",
-    "instance_type": "t2.micro",
-    "region": "us-east-2",
-    "type": "amazon-ebs",
-    "source_ami": "ami-0cc87e5027adcdca8",
-    "ssh_username": "ec2-user",
-    "name": "custom demo ami"
- }],
-   "provisioners": [{
-    "type": "file",
-    "source": "scripts/script.sh",
-    "destination": "/tmp/script.sh"
-  },
-  {
-    "type": "shell",
-    "inline": [
-      "sudo bash /tmp/script.sh"
-    ]
-   }
-   ],
+	  "builders": [
+		      {
+			            "type": "amazon-ebs",
+				          "access_key": "AKIA4KPW54JKO6BD6INV",
+					        "secret_key": "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",
+						      "region": "us-east-1",
+						            "source_ami": "ami-01bc990364452ab3e",
+							          "instance_type": "t2.micro",
+								        "ssh_username": "ec2-user",
+									      "ami_name": "custom demo ami"
+									          }
+										    ],
 
-    "post-processors": [
-    [
-      {
-        "type": "aws-parameter-store",
-        "parameters": [
-          {
-            "name": "/prod/app_ami",
-            "secure_string": true
-          }
-        ]
-      }
-    ]
-  ]
+										      "provisioners": [
+											          {
+													        "type": "shell",
+														      "script": "/root/devops2023/packer/scripts/script.sh"
+														          }
+															    ]
 }
