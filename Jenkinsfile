@@ -24,7 +24,7 @@ pipeline {
                 script {
                     def terraformDir = "${WORKSPACE}" // Update with your actual directory
                     dir(terraformDir) {
-                        sh 'cd ${WORKSPACE}/devops2023/terraform/dev'
+                        sh 'cd ${WORKSPACE}/terraform/dev'
                         sh 'terraform plan' // Run Terraform plan
                     }
                 }
@@ -37,6 +37,7 @@ pipeline {
                     def terraformDir = "${WORKSPACE}" // Update with your actual directory
                     dir(terraformDir) {
                         sh 'ls -la ${WORKSPACE}' // This line lists files in the workspace (optional for debugging)
+                        sh 'cd ${WORKSPACE}/terraform/dev'
                         sh 'terraform apply' // Run Terraform apply
                     }
                 }
