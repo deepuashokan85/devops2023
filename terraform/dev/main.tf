@@ -1,104 +1,15 @@
+# vpc creation
 resource "aws_vpc" "demovpc" {
   cidr_block = var.vpc_cidr_block
-  tags = {
-    Name = "Demo VPC"
-  }
-}
-resource "aws_subnet" "public-subnet" {
-  count                   = var.subnet_count
-  vpc_id                  = var.vpc_id
-  cidr_block              = var.subnet_cidr_blocks[count.index]
-  map_public_ip_on_launch = var.map_public_ip_on_launch
-  availability_zone       = var.availability_zone
-  tags                    = merge(var.subnet_tags, { Name = "${var.subnet_tags["Name"]} ${count.index + 1}" })
-}
-resource "aws_subnet" "database-subnet" {
-  vpc_id            = var.vpc_id
-  cidr_block        = var.subnet_cidr_block
-  availability_zone = var.availability_zone
-  tags              = var.subnet_tags
-}
-resource "aws_instance" "WEBinstance" {
-  ami                         = var.ami_id
-  instance_type               = var.instance_type
-  count                       = var.instance_count
-  key_name                    = var.key_name
-  associate_public_ip_address = var.associate_public_ip
-  tags = {
-    Name = "WEB Instance"
-  }
-  depends_on = [
-    aws_key_pair.kp
-  ]
+  tags      = var.vpc_tags
 }
 
-resource "aws_instance" "APPinstance" {
-  ami                         = var.ami_id
-  instance_type               = var.instance_type
-  count                       = var.instance_count
-  key_name                    = var.key_name
-  associate_public_ip_address = var.associate_public_ip
-  tags = {
-    Name = "APP Instance"
-  }
-  depends_on = [
-    aws_key_pair.kp
-  ]
-}
-
-provider "aws" {
-  region = "us-east-1" # Replace with your desired AWS region
-}
-
-resource "aws_db_instance" "example_db" {
-  allocated_storage = var.db_instance_params.allocated_storage
-  storage_type      = var.db_instance_params.storage_type
-  engine            = var.db_instance_params.engine
-  engine_version    = var.db_instance_params.engine_version
-  instance_class    = var.db_instance_params.instance_class
-  username          = var.db_instance_params.username
-  password          = var.db_instance_params.password
-  parameter_group_name = var.db_instance_params.parameter_group_name
-  skip_final_snapshot  = var.db_instance_params.skip_final_snapshot
-  tags = var.db_instance_params.tags
-}
-
-         " {
-  region = var.aws_region
-}
-
-resource "aws_internet_gateway" "gw" {
-  vpc_id = var.vpc_id
-
-  tags = {
-    Name = "main"
-  }
-}
-
-resource "tls_private_key" "pk" {
-  algorithm = var.tls_key_algorithm
-  rsa_bits  = var.tls_rsa_bits
-}
-
-resource "aws_key_pair" "kp" {
-  key_name   = var.key_name
-  public_key = tls_private_key.pk.public_key_openssh
-
-  provisioner "local-exec" {
-    command = "echo '${tls_private_key.pk.private_key_pem}' > ./${var.key_name}.pem"
-  }
-}
-
-resource "aws_security_group" "allow_tls" {
-  name        = "allow_tls"
-  description = "Allow TLS inbound traffic"
-  vpc_id      = var.vpc_id
-
-  ingress {
-    from_port   = 22
-    to_port     = 22
-    protocol    = "tcp"
-    cidr_blocks = var.cidr_blocks
-  }
+# Creating 1st web subnet
+resource "aws_subnet" "public-subnet-1" {
+  vpc_id                  = aws_vpc.demovpc.id
+  cidr_block              = var.public_subnet_cidr
+  map_public_ip_on_launch = true
+  availability_zone       = var.public_subnet_az
+  tags                    = var.public_subnet_tags
 }
 
