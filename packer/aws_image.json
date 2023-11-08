@@ -5,7 +5,7 @@
 				          "access_key": "",
 					        "secret_key": "",
 						      "region": "us-east-1",
-						            "source_ami": "ami-01bc990364452ab3e",
+						            "source_ami": "ami-05c13eab67c5d8861",
 							          "instance_type": "t2.micro",
 								        "ssh_username": "ec2-user",
 									      "ami_name": "custom demo ami"
