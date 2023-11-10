@@ -89,11 +89,6 @@ resource "aws_instance" "APPinstance" {
 }
 
 
-# creating DB EC2 instance
-provider "aws" {
-  region = "us-east-1" # Replace with your desired AWS region
-}
-
 resource "aws_db_instance" "example_db" {
   allocated_storage = 20
   storage_type      = "gp2"
