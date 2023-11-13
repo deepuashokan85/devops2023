@@ -35,7 +35,7 @@ pipeline {
                     def terraformDir = "${WORKSPACE}/terraform/dev" // Update with your actual directory
                     dir(terraformDir) {
                         sh 'ls -la' // List files in the Terraform directory (optional for debugging)
-                        sh 'terraform apply' // Run Terraform apply
+                        sh 'terraform apply  -auto-approve' // Run Terraform apply
                     }
                 }
             }
