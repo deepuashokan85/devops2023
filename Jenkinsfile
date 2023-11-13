@@ -40,6 +40,18 @@ pipeline {
                 }
             }
         }
+
+       stage('Terraform Destroy') {
+            steps {
+                script {
+                    def terraformDir = "${WORKSPACE}/terraform/dev" // Update with your actual directory
+                    dir(terraformDir) {
+                        sh 'ls -la' // List files in the Terraform directory (optional for debugging)
+                        sh 'terraform destroy  -auto-approve' // Run Terraform apply
+                    }
+                }
+            }
+        }
     }
 }
 
