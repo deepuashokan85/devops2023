@@ -15,7 +15,6 @@ provider "aws" {
 # vpc creation
 resource "aws_vpc" "demovpc" {
   cidr_block = var.vpc_cidr_block
-  tags      = var.vpc_tags
 }
 
 # Creating 1st web subnet
