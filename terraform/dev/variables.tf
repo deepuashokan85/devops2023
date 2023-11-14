@@ -1,3 +1,8 @@
+variable "vpc_cidr_block" {
+  type    = string
+  default = "10.0.0.0/16" 
+}
+
 variable "public_subnet_cidr" {
   description = "CIDR block for the public subnet"
   type        = string
@@ -14,7 +19,7 @@ variable "vpc_tags" {
   description = "Tags for the VPC"
   type        = map(string)
   default     = {
-    Name = "vpc_cidr_block"
+    Name = "Demo VPC"
   }
 }
 
