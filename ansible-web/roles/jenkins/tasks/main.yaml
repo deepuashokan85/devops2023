@@ -1,7 +1,7 @@
 ---
 
   - name: Install a list of packages
-    yum:
+    dnf:
       name:
         - wget
         - git
@@ -19,7 +19,7 @@
     command: sudo rpm --import https://pkg.jenkins.io/redhat-stable/jenkins.io-2023.key
 
   - name: Install Jenkins packages
-    yum:
+    dnf:
       name:
         - jenkins
       state: present

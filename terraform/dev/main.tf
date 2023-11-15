@@ -11,7 +11,7 @@ resource "aws_subnet" "public-subnet-1" {
   vpc_id                  = aws_vpc.demovpc.id
   cidr_block              = "10.0.0.0/24"
   map_public_ip_on_launch = true
-  availability_zone       = "us-east-1a"
+  availability_zone       = "us-east-1"
   tags = {
     Name = "Web Subnet 1"
   }
@@ -21,7 +21,7 @@ resource "aws_subnet" "public-subnet-2" {
   vpc_id                  = aws_vpc.demovpc.id
   cidr_block              = "10.0.1.0/24"
   map_public_ip_on_launch = true
-  availability_zone       = "us-east-1a"
+  availability_zone       = "us-east-1"
   tags = {
     Name = "Web Subnet 2"
   }
@@ -32,7 +32,7 @@ resource "aws_subnet" "application-subnet-1" {
   vpc_id                  = aws_vpc.demovpc.id
   cidr_block              = "10.0.2.0/24"
   map_public_ip_on_launch = false
-  availability_zone       = "us-east-1a"
+  availability_zone       = "us-east-1"
   tags = {
     Name = "Application Subnet 1"
   }
@@ -42,7 +42,7 @@ resource "aws_subnet" "application-subnet-2" {
   vpc_id                  = aws_vpc.demovpc.id
   cidr_block              = "10.0.3.0/24"
   map_public_ip_on_launch = false
-  availability_zone       = "us-east-1a"
+  availability_zone       = "us-east-1"
   tags = {
     Name = "Application Subnet 2"
   }
@@ -52,7 +52,7 @@ resource "aws_subnet" "application-subnet-2" {
 resource "aws_subnet" "database-subnet-1" {
   vpc_id            = aws_vpc.demovpc.id
   cidr_block        = "10.0.4.0/24"
-  availability_zone = "us-east-1a"
+  availability_zone = "us-east-1"
   tags = {
     Name = "Database Subnet 1"
   }
@@ -60,7 +60,7 @@ resource "aws_subnet" "database-subnet-1" {
 
 # Creating WEB EC2 instance
 resource "aws_instance" "WEBinstance" {
-  ami                         = "ami-0ecc890394f5c1234"
+  ami                         = "ami-0230bd60aa48260c6"
   instance_type               = "t2.micro"
   count                       = 2
   key_name                    = "myKey"
@@ -75,7 +75,7 @@ resource "aws_instance" "WEBinstance" {
 
 # Creating APP EC2 instance
 resource "aws_instance" "APPinstance" {
-  ami                         = "ami-0ecc890394f5c1234"
+  ami                         = "ami-0230bd60aa48260c6"
   instance_type               = "t2.micro"
   count                       = 2
   key_name                    = "myKey"
