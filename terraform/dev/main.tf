@@ -58,9 +58,19 @@ resource "aws_subnet" "database-subnet-1" {
   }
 }
 
+data "aws_ami" "latest_amazon_linux" {
+  most_recent = true
+  owners      = ["amazon"]
+
+  filter {
+    name   = "name"
+    values = ["amzn2-ami-hvm-*-x86_64-gp2"]
+  }
+}
+
 # Creating WEB EC2 instance
 resource "aws_instance" "WEBinstance" {
-  ami                         = "ami-0230bd60aa48260c6"
+  ami                         = "data.aws_ami.latest_amazon_linux.id"
   instance_type               = "t2.micro"
   count                       = 2
   key_name                    = "myKey"
@@ -75,7 +85,7 @@ resource "aws_instance" "WEBinstance" {
 
 # Creating APP EC2 instance
 resource "aws_instance" "APPinstance" {
-  ami                         = "ami-0230bd60aa48260c6"
+  ami                         = "data.aws_ami.latest_amazon_linux.id"
   instance_type               = "t2.micro"
   count                       = 2
   key_name                    = "myKey"
