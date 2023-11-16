@@ -44,11 +44,4 @@ pipeline {
             }
         }
     }
-                
-            // The finally block should be inside catchError
-                finally {
-                deleteDir()
-            }
-        }
-    }
 }
