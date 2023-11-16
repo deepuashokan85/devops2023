@@ -39,10 +39,10 @@ pipeline {
                     dir(terraformDir) {
                         sh 'ls -la' // This line lists files in the directory (optional for debugging)
                         sh 'terraform apply' // Run Terraform apply
-                    }
-                }
-            }
-        }
+                     }
+                  }
+              }
+          }
+       }
     }
-
  }
