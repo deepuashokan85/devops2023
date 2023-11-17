@@ -11,7 +11,7 @@ pipeline {
         stage('Terraform Init') {
             steps {
                 script {
-                    def credentialsId = 'dab5d669-9ff1-4c66-adef-5c65fd23ae9f'
+                    def credentialsId = 'practice-for'
                     withCredentials([[$class: 'AmazonWebServicesCredentialsBinding', credentialsId: credentialsId, accessKeyVariable: 'AWS_ACCESS_KEY_ID', secretKeyVariable: 'AWS_SECRET_ACCESS_KEY']]) {
                         def terraformDir = "${WORKSPACE}/terraform/dev" // Update with your actual directory
                         dir(terraformDir) {
