@@ -2,10 +2,10 @@
 	  "builders": [
 		      {
 			            "type": "amazon-ebs",
-				          "access_key": "",
-					        "secret_key": "",
+				          "access_key": "AKIAWRPNU6MYQET4Y7IK",
+					        "secret_key": "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",
 						      "region": "us-east-1",
-						            "source_ami": "ami-05c13eab67c5d8861",
+						            "source_ami": "ami-079db87dc4c10ac91",
 							          "instance_type": "t2.micro",
 								        "ssh_username": "ec2-user",
 									      "ami_name": "custom demo ami"
