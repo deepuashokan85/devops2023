@@ -1,5 +1,5 @@
 data "aws_ssm_parameter" "prod" {
-  name = "velayutham"
+  name = "devops2024"
 }
 
 resource "aws_instance" "web_instance" {
