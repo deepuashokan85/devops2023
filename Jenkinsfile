@@ -12,7 +12,7 @@ pipeline {
                     def terraformDir = "${WORKSPACE}/terraform/dev" // Update with your actual directory
                     dir(terraformDir) {
                         sh 'ls -la' // List files in the Terraform directory (optional for debugging)
-                        sh 'terraform init -upgrade' // Run Terraform init
+                        sh 'terraform init' // Run Terraform init
                     }
                 }
             }
