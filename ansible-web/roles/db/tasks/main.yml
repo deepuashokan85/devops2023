@@ -1,25 +1,27 @@
 ---
 # tasks file for db
-
-- name: Download mysql Yum repository rpm
+- name: Download MySQL Yum repository RPM
   ansible.builtin.get_url:
     url: https://repo.mysql.com//mysql80-community-release-el9-3.noarch.rpm
     dest: /tmp/mysql80-community-release-el9-3.noarch.rpm
 
-- name: Install  mysql yum rpm from a local file
+- name: Install MySQL Yum repository RPM from a local file
   ansible.builtin.yum:
-    name: /tmp/mysql80-community-release-el9-3.noarch.rpm 
+    name: /tmp/mysql80-community-release-el9-3.noarch.rpm
     state: present
     disable_gpg_check: true
 
+- name: Import MySQL GPG key
+  become: yes
+  shell: rpm --import https://repo.mysql.com/RPM-GPG-KEY-mysql
 
-- name: Install Mysql server
+- name: Install MySQL server
   ansible.builtin.yum:
     name: mysql-community-server
     state: latest
 
-- name: Start service mysql, if not started
+- name: Start MySQL service, if not started
   ansible.builtin.service:
     name: mysqld
     state: started
-
+                                                
