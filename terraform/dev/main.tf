@@ -11,7 +11,8 @@ terraform {
 provider "aws" {
   region = "us-east-1"
 }
-# s3 bucket creation
-resource "aws_s3_bucket" "onebuck1" {
-  bucket = var.buck_name
+# vpc creation
+resource "aws_vpc" "demovpc" {
+  cidr_block = var.vpc_cidr_block
+  tags      = var.vpc_tags
 }
