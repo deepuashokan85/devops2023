@@ -2,26 +2,17 @@ pipeline {
     agent any
 
     environment {
-        PATH = "/usr/local/bin/terraform:$PATH"
+        PATH = "/usr/local/bin/terraform:$PATH" // Add the directory where Terraform is installed
     }
 
     stages {
-        stage('Declarative: Checkout SCM') {
-            steps {
-                script {
-                    dir("${WORKSPACE}/to/devops2023/terraform/dev") {
-                        sh 'cp terraform-config/main.tf .'
-                    }
-                }
-            }
-        }
-
         stage('Terraform Init') {
             steps {
                 script {
-                    def terraformDir = "${WORKSPACE}/to/devops2023/terraform/dev"
+                    def terraformDir = "${WORKSPACE}/terraform/dev" // Update with your actual directory
                     dir(terraformDir) {
-                        sh 'terraform init'
+                        sh 'ls -la' // List files in the Terraform directory (optional for debugging)
+                        sh 'terraform init' // Run Terraform init
                     }
                 }
             }
@@ -30,9 +21,9 @@ pipeline {
         stage('Terraform Plan') {
             steps {
                 script {
-                    def terraformDir = "${WORKSPACE}/to/devops2023/terraform/dev"
+                    def terraformDir = "${WORKSPACE}/terraform/dev" // Update with your actual directory
                     dir(terraformDir) {
-                        sh 'terraform plan'
+                        sh 'terraform plan' // Run Terraform plan
                     }
                 }
             }
@@ -41,9 +32,22 @@ pipeline {
         stage('Terraform Apply') {
             steps {
                 script {
-                    def terraformDir = "${WORKSPACE}/to/devops2023/terraform/dev"
+                    def terraformDir = "${WORKSPACE}/terraform/dev" // Update with your actual directory
                     dir(terraformDir) {
-                        sh 'terraform apply'
+                        sh 'ls -la' // List files in the Terraform directory (optional for debugging)
+                        sh 'terraform apply  -auto-approve' // Run Terraform apply
+                    }
+                }
+            }
+        }
+
+       stage('Terraform Destroy') {
+            steps {
+                script {
+                    def terraformDir = "${WORKSPACE}/terraform/dev" // Update with your actual directory
+                    dir(terraformDir) {
+                        sh 'ls -la' // List files in the Terraform directory (optional for debugging)
+                        sh 'terraform destroy  -auto-approve' // Run Terraform apply
                     }
                 }
             }
