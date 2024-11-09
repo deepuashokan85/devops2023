@@ -1,11 +1,11 @@
-variable "ami_value" {
-    description = "value for ami"
+variable "vpc_cidr_block" {
+  type    = string
+  default = "10.0.0.0/16"
 }
-
-variable "instance_type" {
-    description = "value for instance_type"  
-}
-
-variable "subnet_id" {
-    description = "value for subnet_id"  
+variable "vpc_tags" {
+  description = "Tags for the VPC"
+  type        = map(string)
+  default     = {
+    Name = "Demo VPC"
+  }
 }
