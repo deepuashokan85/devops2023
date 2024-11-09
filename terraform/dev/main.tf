@@ -11,9 +11,9 @@ terraform {
 provider "aws" {
   region = "us-east-1"
 }
-# instance creation
-resource "aws_instance" "example" {
-    ami = var.ami_value
-    instance_type = var.instance_type
-    subnet_id = var.subnet_id
+
+# vpc creation
+resource "aws_vpc" "demovpc" {
+  cidr_block = var.vpc_cidr_block
+  tags      = var.vpc_tags
 }
