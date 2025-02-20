@@ -13,11 +13,6 @@ variable "key_name" {
   default     = "myKey"
 }
 
-variable "associate_public_ip" {
-  description = "Whether to associate a public IP address with instances"
-  default     = true
-}
-
 variable "instance_tags" {
   description = "Tags for the EC2 instances"
   type        = map(string)
@@ -26,7 +21,3 @@ variable "instance_tags" {
   }
 }
 
-variable "rsa_bits" {
-  description = "Number of bits in the RSA key"
-  default     = 4096
-}
