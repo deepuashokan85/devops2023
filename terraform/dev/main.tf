@@ -38,6 +38,3 @@ resource "aws_key_pair" "kp" {
   }
 }
 
-resource "aws_s3_bucket" "onebuck1" {
-  bucket = var.buck_name
-}
