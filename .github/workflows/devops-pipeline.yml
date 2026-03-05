@@ -21,7 +21,7 @@ jobs:
         uses: docker/build-push-action@v5
         with:
           # Use the relative path inside your REPO, not your local PC path
-          context: ./kubernetes 
+          context: .github/workflows/devops-pipeline.yml 
           push: true
           tags: |
             ${{ secrets.DOCKERHUB_USERNAME }}/flask-app:latest
