@@ -2,7 +2,7 @@ name: CI/CD Pipeline
 
 on:
   push:
-    branches: [ "velu" ] # Triggers on push to main branch
+    branches: [ "main" ] # Triggers on push to main branch
 
 jobs:
   build-and-push:
